@@ -12,19 +12,17 @@ export default (state, action) => {
 
   switch (action.type) {
     case types.PLAYER_CHOICE:
-      if (nextState.player1Choice !== initialState.player1Choice || 
+      if (nextState.player1Choice !== initialState.player1Choice ||
         nextState.player2Choice !== initialState.player2Choice) {
         break;
       }
 
-      // "AI" player 1
       let player1Choice = action.player1Choice;
       if (player1Choice === initialState.player1Choice ||
         nextState.gameMode === gameModes.CVC) {
         player1Choice = getRandomChoice();
       }
 
-      // "AI" player 2
       let player2Choice = action.player2Choice;
       if (player2Choice === initialState.player2Choice ||
          nextState.gameMode === gameModes.CVC) {
@@ -56,7 +54,7 @@ export default (state, action) => {
       }
 
       nextState = getCurrentWinningPlayer(nextState);
-      
+
       nextState = {
         ...nextState,
         outcome: outcome,
