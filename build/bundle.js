@@ -7,6 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 var SET_GAME_MODE = exports.SET_GAME_MODE = 'SET_GAME_MODE';
 var PLAYER_CHOICE = exports.PLAYER_CHOICE = 'PLAYER_CHOICE';
 var NEW_GAME = exports.NEW_GAME = 'NEW_GAME';
+
 var ROUND_END = exports.ROUND_END = 'ROUND_END';
 var ROUND_RESTART = exports.ROUND_RESTART = 'ROUND_RESTART';
 
@@ -17,10 +18,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.playerChoiceAction = playerChoiceAction;
-exports.roundEndAction = roundEndAction;
-exports.roundRestartAction = roundRestartAction;
 exports.newGameAction = newGameAction;
 exports.setGameModeAction = setGameModeAction;
+exports.roundEndAction = roundEndAction;
+exports.roundRestartAction = roundRestartAction;
 
 var _actionTypes = require('./actionTypes');
 
@@ -36,18 +37,6 @@ function playerChoiceAction(player1Choice, player2Choice) {
   };
 }
 
-function roundEndAction() {
-  return {
-    type: types.ROUND_END
-  };
-}
-
-function roundRestartAction() {
-  return {
-    type: types.ROUND_RESTART
-  };
-}
-
 function newGameAction() {
   return {
     type: types.NEW_GAME
@@ -58,6 +47,20 @@ function setGameModeAction(gameMode) {
   return {
     type: types.SET_GAME_MODE,
     gameMode: gameMode
+  };
+}
+
+//TODO : Use me in the web UI
+function roundEndAction() {
+  return {
+    type: types.ROUND_END
+  };
+}
+
+//TODO : Use me in the web UI
+function roundRestartAction() {
+  return {
+    type: types.ROUND_RESTART
   };
 }
 
@@ -163,7 +166,6 @@ var GameModeView = exports.GameModeView = function () {
       var _this = this;
 
       this.self = document.getElementById(this.id);
-      //TODO: hard coded string
       this.pvcElement = document.getElementById("PVC");
       this.cvcElement = document.getElementById("CVC");
 
@@ -235,7 +237,6 @@ var GamePlayView = exports.GamePlayView = function () {
       var _this = this;
 
       this.self = document.getElementById(this.id);
-      //TODO: hard coded string
 
       this.paperElement = document.getElementById("paper");
       this.rockElemet = document.getElementById("rock");
@@ -558,13 +559,11 @@ exports.default = function (state, action) {
         break;
       }
 
-      // "AI" player 1
       var player1Choice = action.player1Choice;
       if (player1Choice === _initialState.initialState.player1Choice || nextState.gameMode === _gameModes.gameModes.CVC) {
         player1Choice = (0, _getRandomChoice.getRandomChoice)();
       }
 
-      // "AI" player 2
       var player2Choice = action.player2Choice;
       if (player2Choice === _initialState.initialState.player2Choice || nextState.gameMode === _gameModes.gameModes.CVC) {
         player2Choice = (0, _getRandomChoice.getRandomChoice)();

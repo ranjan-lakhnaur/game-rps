@@ -9,10 +9,9 @@ export class GamePlayView {
     this.id = props.id;
     this._init();
   };
-  
+
   _init() {
     this.self = document.getElementById(this.id);
-    //TODO: hard coded string
     
     this.paperElement = document.getElementById("paper");
     this.rockElemet = document.getElementById("rock");
@@ -38,18 +37,18 @@ export class GamePlayView {
 
   _render(state) {
     // prevent iterating through both lists by comparing with the previous state
-    if (state.outcome === initialState.outcome && 
+    if (state.outcome === initialState.outcome &&
     this.state.outcome !== initialState.outcome) {
       this.player1Boxes[this.state.player1Choice].firstElementChild.classList.remove("selected");
       this.player2Boxes[this.state.player2Choice].firstElementChild.classList.remove("selected");
     } else {
       this.player1Boxes[state.player1Choice] &&
       this.player1Boxes[state.player1Choice].firstElementChild.classList.add("selected");
-      
+
       this.player2Boxes[state.player2Choice] &&
       this.player2Boxes[state.player2Choice].firstElementChild.classList.add("selected");
     }
-  
+
     this.state = state;
   }
 }

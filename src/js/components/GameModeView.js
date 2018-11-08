@@ -9,10 +9,9 @@ export class GameModeView {
     this.id = props.id;
     this._init();
   };
-  
+
   _init() {
     this.self = document.getElementById(this.id);
-    //TODO: hard coded string
     this.pvcElement = document.getElementById("PVC");
     this.cvcElement = document.getElementById("CVC");
 
